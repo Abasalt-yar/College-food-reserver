@@ -1,0 +1,948 @@
+{
+	"info": {
+		"_postman_id": "0c8453e3-b1e2-43d1-b27f-d0ab497432a9",
+		"name": "College Food Reserver",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13091295"
+	},
+	"item": [
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"03121095705031\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/student/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"UNPROCESSABLE_ENTITY | DATA_IS_NOT_VALID\"\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"INTERNAL_SERVER_ERROR\"\r\n}"
+						},
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"یوزرنیم و یا پسورد اشتباه میباشد\"\r\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/student/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"access_token\": \"My Token\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/student/profile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/student/profile",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student",
+										"profile"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"AUTHORIZATION HEADER NOT FOUND | Authentication Failed\"\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/student/profile",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student",
+										"profile"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"INTERNAL_SERVER_ERROR\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Transfer Balance",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"target\": \"03121095705032\",\r\n    \"balance\": 1000 // a value multipleOf 1000, Min 1,000, Max 100,000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/student/transferBalance",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student",
+								"transferBalance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"to\": \"اباصلت یارمحمدزئی\",\r\n    \"newBalance\": 5000\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"INTERNAL_SERVER_ERROR\"\r\n}"
+						},
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"AUTHORIZATION HEADER NOT FOUND | Authentication Failed | INSUFFICIENT_BALANCE | CANT_DO\"\r\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"TARGET_NOT_FOUND\"\r\n}"
+						},
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"UNPROCESSABLE_ENTITY | TARGET_USERNAME_NOT_VALID | TRANSFER_BALANCE_NOT_VALID\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Pass",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"current\": \"12345678\",\r\n    \"new\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/student/changepass",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student",
+								"changepass"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"AUTHORIZATION HEADER NOT FOUND | Authentication Failed | CURRENT_PASSWORD_INCORRECT\"\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"INTERNAL_SERVER_ERROR\"\r\n}"
+						},
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/student/changepass",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student",
+										"changepass"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"UNPROCESSABLE_ENTITY | NEWPASS_LENGTH_LOWER_8 | NEWPASS_LENGTH_MORE_60 | CURRENT_PASSWORD_INCORRECT | INVALID_PASSWORD\"\r\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/student/changepass",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student",
+										"changepass"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"پسورد شما با موفقیت تغییر کرد\",\r\n    \"logout\": true // Logout user And redirect to /login\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Second Pass",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"new\": \"0505\" // Number Between >= 4 && <= 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/student/change2pass",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student",
+								"change2pass"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"AUTHORIZATION HEADER NOT FOUND | Authentication Failed\"\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"INTERNAL_SERVER_ERROR\"\r\n}"
+						},
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"UNPROCESSABLE_ENTITY | NEWPASS_NOT_BETWEEN_4_8 | NEWPASS_NOT_MATCH\"\r\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"پسورد شما با موفقیت تغییر کرد\",\r\n    \"logout\": false // Don't Logout\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/student/requestBalance?price=5000",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student",
+								"requestBalance"
+							],
+							"query": [
+								{
+									"key": "price",
+									"value": "5000"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"AUTHORIZATION HEADER NOT FOUND | Authentication Failed\"\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"INTERNAL_SERVER_ERROR | NOT_VALID_RESPONSE_FROM_GATEWAY | FAILED_TO_SAVE_PAYMENT\"\r\n}"
+						},
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"UNPROCESSABLE_ENTITY | PRICE_PARAMETER_NOT_VALID\"\r\n}"
+						},
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"link\": \"https://google.com\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Verify Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authority\": \"S000000000000000000000000000000mxpmn\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/student/verifyPayment",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"student",
+								"verifyPayment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"AUTHORIZATION HEADER NOT FOUND | Authentication Failed\"\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"INTERNAL_SERVER_ERROR\"\r\n}"
+						},
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"UNPROCESSABLE_ENTITY | INVALID_AUTHORITY\"\r\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"ref_id\": 1235123,\r\n    \"price\": 1000\r\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"authority\": \"S000000000000000000000000000000rxzlp\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/student/verifyPayment",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"student",
+										"verifyPayment"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"PAYMENT_NOT_FOUND | PAYMENT_NOT_COMPLETE | PAYMENT_ALREADY_VERIFIED\"\r\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzM3NjY4MjMsImluY3JlbWVudGFsIjowLCJpc3MiOiJNWV9BUFBfTkFNRSIsIm5iZiI6MTczMTE3NDgyMywic3ViIjoiMSIsInVzZXJuYW1lIjoiMDMxMjEwOTU3MDUwMzEifQ.pRg1OYV1u4lCrknJydFmB5MyEFrq52ZXo-Ld4Fa69LY",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:3333",
+			"type": "string"
+		}
+	]
+}
