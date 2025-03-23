@@ -1,15 +1,16 @@
 package student
 
 import (
-	"github.com/abasalt-yar/college-food-reserver/body"
-	"github.com/abasalt-yar/college-food-reserver/config"
-	"github.com/abasalt-yar/college-food-reserver/models"
 	"context"
 	"encoding/json"
 	"fmt"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/abasalt-yar/college-food-reserver/body"
+	"github.com/abasalt-yar/college-food-reserver/config"
+	"github.com/abasalt-yar/college-food-reserver/models"
 
 	"github.com/getsentry/sentry-go"
 	"github.com/gin-gonic/gin"
@@ -77,7 +78,7 @@ func StudentTransferBalance(c *gin.Context) {
 		go config.CustomError(config.CErrorOptions{
 			Err:   err.Error(),
 			Level: sentry.LevelFatal,
-			User:  &sentry.User{Username: user.Username, ID: string(target.ID)},
+			User:  &sentry.User{Username: user.Username, ID: fmt.Sprintf("%d", target.ID)},
 		})
 		c.JSON(500, config.ResponseError{
 			Status:  false,
