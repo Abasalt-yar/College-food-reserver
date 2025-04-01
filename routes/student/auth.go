@@ -1,6 +1,7 @@
 package student
 
 import (
+	"errors"
 	"os"
 	"strconv"
 	"time"
@@ -26,7 +27,7 @@ func StudentLogin(c *gin.Context) {
 	}
 
 	if err := db.First(&student, &models.Student{Username: requestBody.Username}).Error; err != nil {
-		if gorm.ErrRecordNotFound == err {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
 			c.JSON(401, config.ResponseError{
 				Status:  false,
 				Message: "یوزرنیم و یا پسورد اشتباه میباشد",

@@ -17,7 +17,7 @@ type ZarinpalRequest struct {
 }
 
 type ZarinaplRedis struct {
-	UserID uint
+	UserID uint64
 	Amount uint64
 }
 

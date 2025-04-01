@@ -10,10 +10,7 @@ import (
 
 func connectRedis() *redis.Client {
 	rdb := redis.NewClient(&redis.Options{
-		// Addr: os.Getenv("REDIS_ADDR"),
-		Addr: "redis-15403.c294.ap-northeast-1-2.ec2.redns.redis-cloud.com:15403",
-		Username: "default",
-		Password: "GiSkaAOYY26Zoah3E8MzH0f9UKxw6Kat",
+		Addr: os.Getenv("REDIS_ADDR"),
 	})
 	if err := rdb.Ping(context.Background()).Err(); err != nil {
 		fmt.Println(err)

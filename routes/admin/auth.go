@@ -1,12 +1,14 @@
 package admin
 
 import (
-	"github.com/abasalt-yar/college-food-reserver/body"
-	"github.com/abasalt-yar/college-food-reserver/config"
-	"github.com/abasalt-yar/college-food-reserver/models"
+	"errors"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/abasalt-yar/college-food-reserver/body"
+	"github.com/abasalt-yar/college-food-reserver/config"
+	"github.com/abasalt-yar/college-food-reserver/models"
 
 	"github.com/getsentry/sentry-go"
 	"github.com/gin-gonic/gin"
@@ -24,7 +26,7 @@ func AdminLogin(c *gin.Context) {
 		return
 	}
 	if err := db.First(&admin, &models.Admin{Username: requestBody.Username}).Error; err != nil {
-		if gorm.ErrRecordNotFound == err {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
 			c.JSON(404, config.ResponseError{Status: false, Message: "یوزرنیم و یا پسورد اشتباه میباشد."})
 			return
 		}

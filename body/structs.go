@@ -79,3 +79,24 @@ type AdminAddFoodBody struct {
 	FoodName    string `json:"food_name"`
 	IsExpensive bool   `json:"is_expensive"`
 }
+
+type AdminRemoveFood struct {
+	FoodID uint64 `json:"food_id"`
+}
+
+type AdminAddStudent struct {
+	Username    string `json:"username"`
+	Password    string `json:"password"`
+	FirstName   string `json:"first_name"`
+	LastName    string `json:"last_name"`
+	PhoneNumber string `json:"phone_number"`
+	Position    string `json:"position"`
+}
+type AdminRemoveStudent struct {
+	StudentID uint64 `json:"student_id"`
+}
+
+type AdminUpdateStudentPosition struct {
+	StudentID uint64 `json:"student_id"`
+	Position  string `json:"position"`
+}

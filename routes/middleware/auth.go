@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"regexp"
@@ -75,8 +76,8 @@ func AuthMiddlewareStudent(c *gin.Context) {
 			})
 			return
 		}
-		if err := db.First(&student, &models.Student{ID: uint(newsub)}).Error; err != nil {
-			if gorm.ErrRecordNotFound == err {
+		if err := db.First(&student, &models.Student{ID: newsub}).Error; err != nil {
+			if errors.Is(err, gorm.ErrRecordNotFound) {
 				c.JSON(401, config.ResponseError{
 					Status:  false,
 					Message: "Authentication Failed.",
@@ -172,8 +173,8 @@ func AuthMiddlewareAdmin(c *gin.Context) {
 			})
 			return
 		}
-		if err := db.First(&admin, &models.Admin{ID: uint(newsub)}).Error; err != nil {
-			if gorm.ErrRecordNotFound == err {
+		if err := db.First(&admin, &models.Admin{ID: newsub}).Error; err != nil {
+			if errors.Is(err, gorm.ErrRecordNotFound) {
 				c.JSON(401, config.ResponseError{
 					Status:  false,
 					Message: "Authentication Failed.",

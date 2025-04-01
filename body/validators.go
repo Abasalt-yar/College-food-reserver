@@ -1,8 +1,9 @@
 package body
 
 import (
-	"github.com/abasalt-yar/college-food-reserver/config"
 	"regexp"
+
+	"github.com/abasalt-yar/college-food-reserver/config"
 
 	"github.com/gin-gonic/gin"
 )
@@ -115,5 +116,28 @@ func (s *AdminAddFoodBody) Validate(c *gin.Context) *config.ResponseError {
 		return &config.ResponseError{Status: false, Message: "FOOD_NAME_BETWEEN_4_60"}
 	}
 
+	return nil
+}
+
+func (s *AdminAddStudent) Validate(c *gin.Context) *config.ResponseError {
+	if err := c.BindJSON(&s); err != nil {
+		return &config.ResponseError{Status: false, Message: "UNPROCESSABLE_ENTITY"}
+	}
+	if len(s.Password) < 5 || len(s.FirstName) < 3 || len(s.LastName) < 3 {
+		return &config.ResponseError{Status: false, Message: "DATA_IS_NOT_VALID"}
+	}
+	if s.Position != "NORMAL_STUDENT" && s.Position != "DORM_STUDENT" {
+		return &config.ResponseError{Status: false, Message: "DATA_IS_NOT_VALID"}
+	}
+	return nil
+}
+
+func (s *AdminUpdateStudentPosition) Validate(c *gin.Context) *config.ResponseError {
+	if err := c.BindJSON(&s); err != nil {
+		return &config.ResponseError{Status: false, Message: "UNPROCESSABLE_ENTITY"}
+	}
+	if s.Position != "NORMAL_STUDENT" && s.Position != "DORM_STUDENT" {
+		return &config.ResponseError{Status: false, Message: "DATA_IS_NOT_VALID"}
+	}
 	return nil
 }

@@ -3,6 +3,7 @@ package student
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -53,7 +54,7 @@ func StudentTransferBalance(c *gin.Context) {
 	db := c.Keys["PSQLDB"].(*gorm.DB)
 	var target models.Student
 	if err := db.Select("balance", "id", "first_name", "last_name").First(&target, &models.Student{Username: requestBody.Target}).Error; err != nil {
-		if gorm.ErrRecordNotFound == err {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
 			c.JSON(401, config.ResponseError{
 				Status:  false,
 				Message: "TARGET_NOT_FOUND",
